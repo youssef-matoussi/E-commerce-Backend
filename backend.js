@@ -9,6 +9,7 @@ const axios = require('axios');  // Import axios for making HTTP requests
 
 const authRoutes = require('./routes/authRoutes');
 const ProductRoutes = require('./routes/ProductRoutes');
+const ProfilRoutes = require('./routes/ProfilRoutes');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -22,6 +23,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use('/api', authRoutes);
 app.use('/api', ProductRoutes);  // For upload product routes
+app.use('/api', ProfilRoutes);  // For upload product routes
 
 const server = http.createServer(app);
 server.listen(port, '0.0.0.0', () => console.log(`Server running on port ${port}`));
@@ -34,12 +36,12 @@ server.listen(port, '0.0.0.0', () => console.log(`Server running on port ${port}
 const serverURL = `https://e-commerce-backend-a46t.onrender.com`;  // Replace with your actual Render URL
 
 // Schedule a cron job to run every 5 minutes
-cron.schedule('*/5 * * * *', async () => {
-    try {
-        console.log('Sending keep-alive ping...');
-        await axios.get(serverURL);
-        console.log('Keep-alive ping successful ✅');
-    } catch (error) {
-        console.error('Error sending keep-alive ping:', error.message);
-    }
-});
+// cron.schedule('*/5 * * * *', async () => {
+//     try {
+//         console.log('Sending keep-alive ping...');
+//         await axios.get(serverURL);
+//         console.log('Keep-alive ping successful ✅');
+//     } catch (error) {
+//         console.error('Error sending keep-alive ping:', error.message);
+//     }
+// });
